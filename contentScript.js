@@ -1,7 +1,6 @@
 // Wait for the document to be ready
 window.onload = function (event) {
     chrome.storage.sync.get(['myCheckbox'], function (result) {
-        console.log("HELLO")
         if (result.myCheckbox) {
             enableTheme();
         }

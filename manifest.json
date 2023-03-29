@@ -1,0 +1,24 @@
+{
+    "manifest_version": 2,
+    "name": "Chess.com Glassmorphic Theme",
+    "version": "1.0",
+    "description": "Changes the CSS styling on chess.com to give it a glassmorphic effect.",
+    "permissions": [
+        "http://*/*",
+        "https://*/*",
+        "activeTab"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "https://www.chess.com/*"
+            ],
+            "js": [
+                "contentScript.js"
+            ],
+            "css": [
+                "styles.css"
+            ]
+        }
+    ]
+}

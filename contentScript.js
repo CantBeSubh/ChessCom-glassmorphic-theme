@@ -1,14 +1,15 @@
 // Wait for the document to be ready
-document.addEventListener("DOMContentLoaded", function (event) {
-    // Find the elements with the .container class
-
-    const containers = document.querySelectorAll('.nav-panel-component');
-    // Loop through each element and add the .glassmorphic class
-    containers.forEach((container) => {
-        container.classList.add('glassmorphic');
+window.onload = function (event) {
+    chrome.storage.sync.get(['myCheckbox'], function (result) {
+        console.log("HELLO")
+        if (result.myCheckbox) {
+            enableTheme();
+        }
+        else {
+            disableTheme();
+        }
     });
-});
-
+}
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.type === 'toggle-theme') {
         if (message.enabled) {

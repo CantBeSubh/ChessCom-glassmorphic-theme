@@ -1,17 +1,12 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const toggleSwitch = document.querySelector('.toggle-theme input[type="checkbox"]');
-    chrome.storage.sync.get("isEnabled", function (data) {
-        toggleSwitch.checked = data.isEnabled;
-    });
-
-    toggleSwitch.addEventListener("change", function (event) {
-        const isEnabled = event.target.checked;
-        chrome.storage.sync.set({ isEnabled });
+const toggleTheme = document.getElementById('toggle-theme');
+document.addEventListener('DOMContentLoaded', () => {
+    chrome.storage.sync.get(['myCheckbox'], function (result) {
+        toggleTheme.checked = result.myCheckbox || false;
     });
 });
-const toggleTheme = document.getElementById('toggle-theme');
 
 toggleTheme.addEventListener('change', (event) => {
+    chrome.storage.sync.set({ 'myCheckbox': event.target.checked });
     const message = {
         type: 'toggle-theme',
         enabled: event.target.checked
